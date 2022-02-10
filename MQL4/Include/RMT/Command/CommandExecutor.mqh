@@ -404,7 +404,7 @@ CommandResult CommandExecutor::execute(const CloseOrderRequest& request, CloseOr
 
         if (OrderClose(request.ticket, lots, price, slippage))
         {
-            if (!OrderSelect(request.ticket, SELECT_BY_TICKET))
+            if (OrderSelect(request.ticket, SELECT_BY_TICKET))
             {
                 response.close_price = OrderClosePrice();
                 response.close_time  = OrderCloseTime();
